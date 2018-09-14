@@ -13,8 +13,9 @@ var guessedLettersHTML = document.getElementById("guessed-letters");
 winCounterHTML.textContent = "Wins: " + wins;
 lossCounterHTML.textContent = "Losses: " + losses;
 guessesCounterHTML.textContent = "Guesses Left: " + guessesLeft;
+guessedLettersHTML.textContent = "Your Guesses: ";
 function resetGame() {
-  document.querySelector("#guesses-counter").innerHTML = "Guesses Left: " + 9;
+  guessesLeft = 9;
 }
 // Run the function on keypress
 document.onkeyup = function(event) {
@@ -29,17 +30,17 @@ document.onkeyup = function(event) {
     // if user guesses incorrectly
   } else if (userGuess !== computerGuess) {
       guessesLeft = guessesLeft - 1;
-  } else if (guessesLeft === 0 ) {
-      losses++;
-      guessesLeft = guessesLeft + 9;
+      if (guessesLeft == 0 ) {
       resetGame();
-  }
+      losses++;
+    }
+  } 
 
   // make references back to HTML
   winCounterHTML.textContent = "Wins: " + wins;
   lossCounterHTML.textContent = "Losses: " + losses;
   guessesCounterHTML.textContent = "Guesses Left: " + guessesLeft;
-  guessedLettersHTML.textContent = "Your Guesses: " + this.appendChild(userGuess);
+  guessedLettersHTML.insertAdjacentText("Your Guesses", userGuess);
 
 }
 
