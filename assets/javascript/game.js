@@ -1,5 +1,6 @@
 // set computer choices
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var lettersPicked = [];
 // win, loss, guesses, guessed variables
 var wins = 0;
 var losses = 0;
@@ -16,11 +17,13 @@ guessesCounterHTML.textContent = "Guesses Left: " + guessesLeft;
 guessedLettersHTML.textContent = "Your Guesses: ";
 function resetGame() {
   guessesLeft = 9;
+  lettersPicked = [];
 }
 // Run the function on keypress
 document.onkeyup = function(event) {
   // What key was pressed?
   var userGuess = event.key; 
+  lettersPicked.push(userGuess);
   // What did the computer select?
   var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
   // Logic of the game
@@ -40,7 +43,7 @@ document.onkeyup = function(event) {
   winCounterHTML.textContent = "Wins: " + wins;
   lossCounterHTML.textContent = "Losses: " + losses;
   guessesCounterHTML.textContent = "Guesses Left: " + guessesLeft;
-  guessedLettersHTML.insertAdjacentText("Your Guesses", userGuess);
+  guessedLettersHTML.textContent = "Your Guesses: " + lettersPicked;
 
 }
 
